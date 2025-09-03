@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main() {
+    int arr[50], n, i, j;
+    printf("Enter size: ");
+    scanf("%d", &n);
+
+    printf("Enter elements: ");
+    for (i = 0; i < n; i++) scanf("%d", &arr[i]);
+
+    printf("Repeated elements and their indices:\n");
+    for (i = 0; i < n; i++) {
+        for (j = i + 1; j < n; j++) {
+            if (arr[i] == arr[j]) {
+                printf("Value %d at indices %d and %d\n", arr[i], i, j);
+            }
+        }
+    }
+    return 0;
+}
