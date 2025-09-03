@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <limits.h>
+
+#define V 4
+
+int tsp(int graph[V][V], int s, int visited, int pos) {
+    if (visited == (1 << V) - 1) return graph[pos][s];
+    int ans = INT_MAX;
+    for (int city = 0; city < V; city++) {
+        if ((visited & (1 << city)) == 0) {
+            int newAns = graph[pos][city] + tsp(graph, s, visited | (1 << city), city);
+            if (newAns < ans) ans = newAns;
+        }
+    }
+    return ans;
+}
+
+int main() {
+    int graph[V][V] = {
+        {0, 10, 15, 20},
+        {10, 0, 35, 25},
+        {15, 35, 0, 30},
+        {20, 25, 30, 0}
+    };
+    printf("Minimum cost: %d\n", tsp(graph, 0, 1, 0));
+    return 0;
+}
