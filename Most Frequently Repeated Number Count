@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    int arr[50], n, i, j, count, maxCount = 0, mostFreq;
+    printf("Enter size: ");
+    scanf("%d", &n);
+
+    printf("Enter elements: ");
+    for (i = 0; i < n; i++) scanf("%d", &arr[i]);
+
+    for (i = 0; i < n; i++) {
+        count = 1;
+        for (j = i + 1; j < n; j++) {
+            if (arr[i] == arr[j]) count++;
+        }
+        if (count > maxCount) {
+            maxCount = count;
+            mostFreq = arr[i];
+        }
+    }
+    printf("Most frequent element: %d (repeated %d times)\n", mostFreq, maxCount);
+    return 0;
+}
